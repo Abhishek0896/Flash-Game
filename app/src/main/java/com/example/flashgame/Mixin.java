@@ -1,9 +1,11 @@
 package com.example.flashgame;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +24,8 @@ public class Mixin extends AppCompatActivity {
     ArrayList<String> data = new ArrayList<>();
     TimerAdapter adapter;
     RecyclerView recyclerView;
-    int sum=0;
+    CountDownTimer timer;
+    int sum=0,j, round =0, i=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +39,11 @@ public class Mixin extends AppCompatActivity {
         mixstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                round =0;
                 data.clear();
                 sum=0;
                 getRandom();
-//                settimer();
+                settimer();
 
             }
         });
@@ -57,46 +62,98 @@ public class Mixin extends AppCompatActivity {
     }
 
     public void getRandom() {
-        data.clear();
-        int i = 0;
         int val=0;
-        while (i < 3) {
             int rand = -10 + new Random().nextInt(20);
             rand = rand == 0 ? rand + new Random().nextInt(9) : rand;
-            sum = sum+ rand;
-            int s= sum;
 
-            data.add(i,""+rand);
-            i++;
-        }
-        data.add(3,"??");
-        adapter = new TimerAdapter(data, Mixin.this);
+            if(round <= 2) {
+                data.add(round, "" + rand);
+                sum = sum+ rand;
+            }
+
+//            if(round == 3){
+//                data.add(round,""+sum);
+//            }
+        adapter = new TimerAdapter(data, Mixin.this, 3);
         recyclerView.setLayoutManager(new LinearLayoutManager(Mixin.this));
         recyclerView.setAdapter(adapter);
-        settimer(sum);
+
+
+
+//
+//        settimer(sum);
 
 //        adapter = new TimerAdapter(data, Mixin.this);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(Mixin.this));
 //        recyclerView.setAdapter(adapter);
     }
 
-    public void settimer(int sum) {
-            new CountDownTimer(6000, 1000) {
-                int i =5;
-                public void onTick(long millisUntilFinished) {
-                    if (i >= 0) {
-                        mixtimer.setText("" + i);
-                        i--;
-                    }
+    public void settimer() {
+
+        int interval =4000;
+
+        timer = new CountDownTimer(interval, 1000) {
+
+
+            public void onTick(long millisUntilFinished) {
+                if (i >= 0) {
+                    mixtimer.setText("" + i);
+                    i--;
                 }
-                public void onFinish() {
-                    data.set(0,"??");
-                    data.set(1,"??");
-                    data.set(2,"??");
-                    data.set(3,""+sum);
-                     adapter.notifyDataSetChanged();
-                }
-            }.start();
+            }
+
+            public void onFinish() {
+            if(round == 3){
+                timer.cancel();
+                setData();
+            }
+            else {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+                        setData();
+                        i=3;
+//                    }
+//                });
+                timer.start();
+            }
+//            adapter.notifyDataSetChanged();
+
+//
+
+//
+//
+//
+//
+//
+            }
+        }.start();
+
+        }
+
+
+        public void setData(){
+            if (round == 0) {
+                Toast.makeText(Mixin.this,"set value", Toast.LENGTH_LONG);
+                data.set(0, "??");
+            }
+            if (round == 1) {
+                Toast.makeText(Mixin.this,"set value", Toast.LENGTH_LONG);
+                data.set(1, "??");
+            }
+            if (round == 2) {
+                Toast.makeText(Mixin.this,"set value", Toast.LENGTH_LONG);
+                data.set(2, "??");
+            }
+            if (round == 3) {
+                Toast.makeText(Mixin.this,"set value", Toast.LENGTH_LONG);
+                data.add(3, "" + sum);
+            }
+            round++;
+            adapter = new TimerAdapter(data, Mixin.this,3);
+            recyclerView.setLayoutManager(new LinearLayoutManager(Mixin.this));
+            recyclerView.setAdapter(adapter);
+            getRandom();
         }
 
 }

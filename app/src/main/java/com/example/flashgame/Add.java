@@ -126,7 +126,7 @@ public class Add extends AppCompatActivity {
             i++;
         }
         data.add(3, "??");
-        adapter = new TimerAdapter(data, Add.this);
+        adapter = new TimerAdapter(data, Add.this,3);
         recyclerViewadd.setLayoutManager(new LinearLayoutManager(Add.this));
         recyclerViewadd.setAdapter(adapter);
         settimer(sum);
