@@ -51,12 +51,13 @@
                     android:layout_weight="9">
 
                     <LinearLayout
+                        android:id="@+id/sumsingle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
-                        android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#F50057">
+                        android:background="#F50057"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -70,12 +71,13 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/sumdouble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:background="#F50057">
+                        android:background="#F50057"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -133,7 +135,7 @@
                     android:layout_weight="9">
 
                     <LinearLayout
-                        android:id="@+id/mixgame"
+                        android:id="@+id/mixsingle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
@@ -153,12 +155,13 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/mixdouble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:background="#F50057">
+                        android:background="#F50057"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -216,12 +219,13 @@
                     android:layout_weight="9">
 
                     <LinearLayout
+                        android:id="@+id/multiplysingle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
-                        android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#F50057">
+                        android:background="#F50057"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -235,12 +239,13 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/multiplydouble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:background="#F50057">
+                        android:background="#F50057"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
